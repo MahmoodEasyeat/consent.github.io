@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- Button to trigger API call -->
+    <button id="callApiBtn">Call API</button>
+
+    <!-- Div to display the API response -->
+    <div id="responseOutput"></div>
+
+    <script>
+        // Function to handle the button click and call the API
+        $('#callApiBtn').on('click', function() {
+            // Form data
+            const data = {
+                ConsentId: "Cust_47978df56f11195fd52b8c46366d8d3d28",
+                EndtoEndId: "20250502M0009273811OBW00051645",
+                EndtoEndIdSignature: "ed3Gkws/6YoAORkxyhlXIl+qH7E5YO4OGaMZyPiEMy71eSBhqNMDjrvRwm1dhOpZP0e0tSNDH6f0r7V5D6JV5UKNT6Evk8j1se0QHHkVJrJe1VoqWTuNuHr8DYe4zVjui7J2Vwq27A6iBR9NVERy97zFAeX++iKAJPaaMc9vAmGh9loyWvVw/z1VcnY5s77Zsp4Epmia24zICEoaS/XDa7/M5DBerTz6Dk1y4Y7jUc9MbVtkvtXcqr/QRJ88ssifowdaKHzHWQIoUuV9UAYtnOaQK07Rc1zdzj20vxP9oYNyGkia+4sEXqjgBZpp+5UsqlpQnlDUuPwOwF/lMV6PbA==",
+                BankCode: "MBBEMYKL"
+            };
+
+            // Create a form
+            const form = $('<form>', {
+                action: 'https://www.onlinepayment.com.my/RMS/PNCO/ConsentRedirect.php',
+                method: 'POST'
+            });
+
+            // Add data as hidden fields
+            $.each(data, function(key, value) {
+                form.append($('<input>', {
+                    type: 'hidden',
+                    name: key,
+                    value: value
+                }));
+            });
+
+            // Append form to body and submit
+            $('body').append(form);
+            form.submit();
+        });
+    </script>
+
+</body>
+</html>
